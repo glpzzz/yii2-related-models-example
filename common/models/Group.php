@@ -60,10 +60,17 @@ class Group extends \yii\db\ActiveRecord
         return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('user_group', ['group_id' => 'id']);
     }
 
+    // This one fails when no user is selected
     public function setUsers(array $users)
     {
         $this->users = $users;
     }
+
+    // THIS ONE IT'S THE "SOLUTION"
+    // public function setUsers(array|string $users)
+    // {
+    //     $this->users = is_array($users) ? $users : [$users];
+    // }
 
     public function afterSave($insert, $changedAttributes)
     {
