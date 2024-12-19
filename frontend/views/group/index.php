@@ -37,6 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'name',
             [
+        'attribute' => 'users',
+        'value' => fn(Group $model) => $model->getUsers()->count(),
+            ],
+            [
                 'class' => ActionColumn::className(),
                 'template' => '{update} {delete}',
                 'urlCreator' => function ($action, Group $model, $key, $index, $column) {
